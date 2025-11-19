@@ -1,23 +1,21 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [msg, setMsg] = useState("Loading...");
+
+  useEffect(() => {
+    fetch("/api/")
+      .then(res => res.json())
+      .then(data => setMsg(data.message))
+      .catch(() => setMsg("API Error"));
+  }, []);
+
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "linear-gradient(135deg, #667eea, #764ba2)",
-        color: "white",
-        fontFamily: "system-ui, sans-serif",
-        textAlign: "center",
-        padding: "2rem",
-      }}
-    >
-      <h1 style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎉 Welcome!</h1>
-      <p style={{ fontSize: "1.5rem", maxWidth: "600px" }}>
-        Simple Next.js welcome page.
-      </p>
-    </main>
+    <div style={{ padding: "40px" }}>
+      <h1>Next.js + FastAPI</h1>
+      <p>Backend says: {msg}</p>
+    </div>
   );
 }
