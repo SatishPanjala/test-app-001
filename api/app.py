@@ -4,12 +4,8 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the root route!"}
+    return {"message": "backend ok"}
 
-@app.get("/items/")
+@app.get("/items")
 def items():
-    return {"message": "Welcome to the items route!"}
-
-@app.get("/items/update/")
-def update_item():
-    return {"message": "Welcome to the update item route!"}
+    return {"message": "items endpoint ok"}
